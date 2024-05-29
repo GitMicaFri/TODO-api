@@ -1,26 +1,20 @@
 const mongoose = require('mongoose')
 
-const postTodoSchema = new mongoose.Schema({
-    title: {
-        type: String, 
-        required: true,
-        maxlength: 25
-    },
-    content: {
-        type: String,
-        required: true,
-        maxlength: 200
-    },
-    author: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date, 
-        default: Date.now
-    }
+const todoSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    maxlength: 100
+  },
+  content: {
+    type: String,
+    required: true,
+    maxlength: 500
+  },
+  author: {
+    type: String,
+    required: true
+  }
 })
 
-const Todo = mongoose.model('Todo', postTodoSchema)
-
-module.exports = Todo
+module.exports = mongoose.model('Todo', todoSchema)
