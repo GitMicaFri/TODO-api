@@ -40,17 +40,36 @@ exports.getTodoById = async (req, res) => {
 // Update
 exports.updateTodo = async (req, res) => {
   try {
-    const {author} = req.params.author
-    const {content} = req.body
-    const changeByAutor = await Todo.findOneAndUpdate({author})
+    const author = req.params.author;  // Rätt sätt att hämta author från URL:en
+    const content = req.body.content;  // Rätt sätt att hämta content från body
 
-    res.status(200).send('Update by author completed')
+    console.log('Author:', author);  // Loggar värdet av author
+    console.log('Content:', content);  // Loggar värdet av content
+
+    if (!content) {
+      return res.status(400).send("Content required for update.");
+    }
+
+    const updatedTodo = await Todo.findOneAndUpdate(
+      { author: author }, // filter baserat på author från URL
+      { content: content }, // uppdaterar content fältet
+      { new: true } // options: returnerar det uppdaterade dokumentet
+    );
+
+    if (!updatedTodo) {
+      return res.status(404).send("Todo not found for the given author.");
+    }
+
+    res.status(200).json({ message: 'Update by author completed', updatedTodo });
   } catch (err) {
-    res.status(400).send(err)
+    console.log('Error:', err); // Bättre felloggning
+    res.status(400).send(err.message);
   }
 }
 
+
 // Delete
+// Vad händer med Author om man deletar en todo?
 exports.deleteTodo = async (req, res) => {
   try {
 
