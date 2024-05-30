@@ -22,6 +22,7 @@ Registrera en ny användare (POST /register)
 Logga in en användare (POST /login)
 Hämta användarprofilen (GET /profile)
 Använd JWT (JSON Web Tokens) för autentisering och skydda endpoints som kräver att användaren är inloggad.
+
 3. Bloggplattform
 Beskrivning: Skapa en enkel bloggplattform där användare kan skapa, läsa, uppdatera och radera blogginlägg.
 

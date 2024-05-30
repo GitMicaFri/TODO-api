@@ -9,8 +9,6 @@ app.use(express.json())
 
 connectDB()
 
-
-
 app.use(bodyparser.json())
 
 app.use('/api/todo', todoRoutes)

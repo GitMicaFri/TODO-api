@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const todoSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -14,6 +15,10 @@ const todoSchema = new mongoose.Schema({
   author: {
     type: String,
     required: true
+  },
+  status: {
+    type: Boolean,
+    default: false
   }
 })
 
